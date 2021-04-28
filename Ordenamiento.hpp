@@ -55,13 +55,18 @@ bool Ordenamiento<T>::desc(T a, T b)
     return a > b;
 }
 
-template <class T>
+template <class T> //como tienes un for anidad la complejidad es O(n^2)
 std::vector<T> Ordenamiento<T>::burbuja(std::vector<T> e, bool compara (T,T))
 {
+    //guardas longitud de vector
     int n = (int) e.size();
     
+    //recorres el vector hacia adelante
     for (int i = 0; i < n; ++i) {
-        for (int j = n-1; j > i; --j) {
+        //recorres el vector hacia atrás
+        for (int j = n-1; j > i; --j) 
+            //comparas dos elementos proximos, y dependiendo de si una es mayor que el otro, haces swap
+            //la funcion compara es para comparar dependiendo de si lo quieres ordenar asc o desc
             if ( compara(e[j], e[j-1]) ) {
                 std::swap(e[j], e[j-1]);
             }
