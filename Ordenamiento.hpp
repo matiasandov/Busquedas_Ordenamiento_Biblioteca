@@ -157,16 +157,23 @@ std::vector<T> Ordenamiento<T>::quicksort(std::vector<T> e, int primero, int ult
     return e;
 }
 
-
+//complejidad 0(log(2)) porque se va dividendo entre 2
 template <class T>
 std::vector<T> Ordenamiento<T>::mergesort(std::vector<T> e, int l, int n, bool compara (T, T))
 {
+    //l = left index (primer indice)
+    //n = ultimo index 
+    
+    //la mitad actual
     int m = (n + l) / 2;
     
     if (n > l)
     {
+        //recursion en primera mitad (primer indice hasta mitad)
         e = mergesort (e, l, m, compara);
+        //recursion en segunda mitad hasta el final
         e = mergesort (e, m+1, n, compara);
+        //combinacion de todos los vectores
         e = merge (e, l, m, n, compara);
     }
     //copy(e.begin(), e.end(), std::ostream_iterator<T>(std::cout, " "));
@@ -182,9 +189,11 @@ std::vector<T> Ordenamiento<T>::merge(std::vector<T> e, int l, int m, int n, boo
     std::vector<T> aux(e.size());
     
     /* Copiar elementos al vector auxiliar */
+    //de la mitad hacia el inicio
     for(i=m+1;i>l;i--)
         aux[i-1] = e[i-1];
     
+    //de la mitad hacia el final
     for (j=m; j<n; j++)
         aux[n+m-j] = e[j+1];
     
